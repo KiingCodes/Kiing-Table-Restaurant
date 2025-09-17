@@ -1,0 +1,243 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Kiing Table — Where Royal Bites Meet Regal Sips</title>
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --charcoal:#1C1C1C;
+      --gold:#F0B25A;
+      --burgundy:#6C1F2D;
+      --cream:#FFF8F0;
+      --glass: rgba(255,255,255,0.04);
+      --radius:12px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:Poppins,system-ui,Arial;
+      background:var(--charcoal);
+      color:var(--cream);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.45;
+    }
+
+    /* Header / nav */
+    .nav{
+      position:sticky;top:0;z-index:40;
+      backdrop-filter: blur(6px);
+      background:linear-gradient(180deg, rgba(28,28,28,0.75), rgba(28,28,28,0.5));
+      border-bottom:1px solid rgba(255,255,255,0.03);
+    }
+    .nav-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:center;padding:18px}
+    .logo{display:flex;align-items:center; justify-content: center; gap:12px}
+    .logo-img {
+     height: 230px;  /* adjust size */
+     width: auto;
+     display:block;
+    }
+
+    .brand{font-family:'Playfair Display',serif;font-weight:700;letter-spacing:1px;color:var(--gold);font-size:20px}
+    .nav-actions{display:flex;gap:12px;align-items:center}
+    .cta{
+      background:transparent;border:1px solid rgba(240,178,90,0.12);padding:10px 14px;border-radius:10px;color:var(--gold);cursor:pointer;font-weight:600
+    }
+    .cta:focus{outline:2px solid rgba(240,178,90,0.12)}
+
+    /* Hero */
+    .hero{min-height:72vh;display:grid;align-items:center;position:relative;overflow:hidden}
+    .hero-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 420px;gap:40px;padding:80px 22px}
+    .hero-left h1{font-family:'Playfair Display',serif;font-size:56px;margin:0 0 18px;color:var(--gold);letter-spacing:1px}
+    .hero-left p{color: #e8ded0; margin:0 0 22px;font-size:18px}
+    .hero-buttons{display:flex;gap:12px}
+    .btn{background:var(--gold);color:var(--charcoal);padding:12px 18px;border-radius:10px;border:none;font-weight:600;cursor:pointer}
+    .btn.secondary{background:transparent;color:var(--cream);border:1px solid rgba(255,255,255,0.06)}
+
+    /* Hero card (right) */
+    .hero-card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:22px;border-radius:16px;border:1px solid rgba(255,255,255,0.03)}
+    .hero-card h3{margin:0 0 10px;font-family:'Playfair Display',serif;color:var(--cream)}
+    .menu-mini{display:grid;gap:8px}
+    .mini-row{display:flex;justify-content:space-between;align-items:center}
+    .mini-row small{color:rgba(255,255,255,0.65)}
+
+    /* Menu section */
+    .menu-section{max-width:1100px;margin:46px auto;padding:0 22px}
+    .menu-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+    .menu-card{background:var(--glass);padding:20px;border-radius:12px;border:1px solid rgba(255,255,255,0.03)}
+    .section-title{font-family:'Playfair Display',serif;color:var(--gold);font-size:20px;margin-bottom:14px}
+
+    .menu-item{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px dashed rgba(255,255,255,0.03)}
+    .menu-item:last-child{border-bottom:none}
+    .menu-item h4{margin:0;font-weight:600}
+    .menu-item p{margin:6px 0 0;color:rgba(255,255,255,0.65);font-size:13px}
+
+    /* Gallery */
+    .gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:42px auto;max-width:1100px;padding:0 22px}
+    .gallery img{width:100%;height:220px;object-fit:cover;border-radius:10px;border:1px solid rgba(255,255,255,0.03)}
+
+    /* About & contact */
+    .two-col{max-width:1100px;margin:42px auto;padding:0 22px;display:grid;grid-template-columns:1fr 360px;gap:28px}
+    .card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:18px;border-radius:12px;border:1px solid rgba(255,255,255,0.03)}
+
+    .reserve-btn{background:transparent;border:2px solid var(--gold);padding:10px 14px;border-radius:10px;color:var(--gold);font-weight:700;cursor:pointer}
+
+    /* Footer */
+    footer{max-width:1100px;margin:60px auto;padding:24px 22px;text-align:center;color:rgba(255,255,255,0.7)}
+
+    /* Modal */
+    .modal{position:fixed;inset:0;display:none;place-items:center;background:rgba(0,0,0,0.6);z-index:60}
+    .modal.show{display:grid}
+    .modal-card{width:100%;max-width:520px;background:var(--cream);color:var(--charcoal);padding:22px;border-radius:12px}
+    .modal-card h3{margin-top:0}
+    .input{width:100%;padding:10px;border-radius:8px;border:1px solid rgba(0,0,0,0.08);margin-bottom:10px}
+    .modal-actions{display:flex;gap:8px;justify-content:flex-end}
+
+    /* Subtle animations */
+    .fadeUp{transform:translateY(8px);opacity:0;transition:all 700ms cubic-bezier(.2,.9,.25,1)}
+    .in-view{transform:none;opacity:1}
+
+    /* Responsive */
+    @media (max-width:900px){
+      .hero-inner{grid-template-columns:1fr;gap:28px;padding:48px 22px}
+      .gallery{grid-template-columns:repeat(2,1fr)}
+      .two-col{grid-template-columns:1fr}
+    }
+    @media (max-width:520px){
+      .gallery{grid-template-columns:1fr}
+      .brand{font-size:18px}
+      .hero-left h1{font-size:36px}
+    }
+  </style>
+</head>
+<body>
+<header class="nav">
+  <div class="nav-inner">
+    <div class="logo">
+      <img src="images/Kiing%20Table%20Logo.png" alt="Kiing Table Logo" class="logo-img" />
+     
+    </div>
+    <div class="nav-actions">
+      <button class="cta" onclick="openReserve()">Reserve</button>
+    </div>
+  </div>
+</header>
+
+
+  <main>
+    <section class="hero">
+      <div class="hero-inner">
+        <div class="hero-left fadeUp">
+          <h1>Where Royal Bites Meet Regal Sips</h1>
+          <p>Kiing Table blends modern dining with elevated cocktails. Small plates designed to share—carefully curated spirits and signature mixes.</p>
+          <div class="hero-buttons">
+            <button class="btn" onclick="openReserve()">Book a Table</button>
+            <button class="btn secondary">View Menu</button>
+          </div>
+        </div>
+
+        <aside class="hero-card fadeUp">
+          <h3>Today's Highlights</h3>
+          <div class="menu-mini">
+            <div class="mini-row"><div><strong>Truffle Fries</strong><br/><small>parmesan, thyme</small></div><div><strong>R65</strong></div></div>
+            <div class="mini-row"><div><strong>Old Fashioned</strong><br/><small>house barrel-aged</small></div><div><strong>R95</strong></div></div>
+            <div class="mini-row"><div><strong>Seared Salmon</strong><br/><small>citrus glaze</small></div><div><strong>R210</strong></div></div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="menu-section">
+      <div class="menu-grid">
+        <div class="menu-card fadeUp">
+          <div class="section-title">Bites</div>
+          <div class="menu-item"><div><h4>Charred Bruschetta</h4><p>tomato, basil, garlic</p></div><div>R75</div></div>
+          <div class="menu-item"><div><h4>Calamari Crisps</h4><p>spiced lemon aioli</p></div><div>R95</div></div>
+          <div class="menu-item"><div><h4>Truffle Fries</h4><p>parmesan, herbs</p></div><div>R65</div></div>
+          <div class="menu-item"><div><h4>Charcuterie Board</h4><p>cured meats, house pickles</p></div><div>R220</div></div>
+        </div>
+
+        <div class="menu-card fadeUp">
+          <div class="section-title">Cocktails & Spirits</div>
+          <div class="menu-item"><div><h4>Signature Martini</h4><p>vodka, vermouth, orange twist</p></div><div>R95</div></div>
+          <div class="menu-item"><div><h4>Old Fashioned</h4><p>whisky, sugar, bitters</p></div><div>R110</div></div>
+          <div class="menu-item"><div><h4>Whiskey Sour</h4><p>lemon, egg white</p></div><div>R105</div></div>
+          <div class="menu-item"><div><h4>Wine & By the Glass</h4><p>red, white & rose selection</p></div><div>From R70</div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="gallery">
+      <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=1200&q=60" alt="dish"/>
+      <img src="images/Cocktails.jpg"/>
+      <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1200&q=60" alt="interior"/>
+    </section>
+
+    <section class="two-col">
+      <div class="card fadeUp">
+        <h3 style="font-family:'Playfair Display',serif;color:var(--gold);margin-top:0">Our Story</h3>
+        <p style="color:rgba(255,255,255,0.85)">Kiing Table is a celebration of flavour and conviviality. We combine sharing plates with elevated cocktails for an experience that’s equal parts refined and relaxed. Pull up a seat—the Kiing’s table is set.</p>
+        <p style="margin-top:12px;color:rgba(255,255,255,0.75)"><strong>Hours:</strong><br/>Mon-Thu: 11:30 — 22:00<br/>Fri-Sat: 11:30 — 00:00<br/>Sun: 12:00 — 21:00</p>
+      </div>
+
+      <aside class="card fadeUp">
+        <h4 style="margin-top:0;font-family:'Playfair Display',serif;color:var(--gold)">Reserve a Table</h4>
+        <p style="color:rgba(255,255,255,0.75)">Booking is recommended for evenings and weekends.</p>
+        <button class="reserve-btn" onclick="openReserve()">Book Now</button>
+      </aside>
+    </section>
+
+  </main>
+
+  <footer>
+    <div style="max-width:1100px;margin:0 auto;padding:0 22px">© <strong>Kiing Table</strong> — All rights reserved • Follow us @kiingtable</div>
+  </footer>
+
+  <!-- Reservation Modal -->
+  <div id="reserveModal" class="modal" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="modal-card">
+      <h3>Reserve a Table</h3>
+      <p style="color:rgba(0,0,0,0.6)">Fill out the details and we will confirm your booking.</p>
+      <input class="input" id="name" placeholder="Your full name" />
+      <input class="input" id="phone" placeholder="Phone or WhatsApp" />
+      <input class="input" id="date" type="date" />
+      <input class="input" id="time" type="time" />
+      <select class="input" id="guests"><option>1 Guest</option><option>2 Guests</option><option>3 Guests</option><option>4 Guests</option><option>5+ Guests</option></select>
+      <div class="modal-actions">
+        <button class="btn secondary" onclick="closeReserve()">Cancel</button>
+        <button class="btn" onclick="submitReserve()">Request Booking</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Intersection observer for fade-up elements
+    const obs = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('in-view'); })
+    },{threshold:0.12});
+    document.querySelectorAll('.fadeUp').forEach(el=>obs.observe(el));
+
+    // Modal controls
+    const modal = document.getElementById('reserveModal');
+    function openReserve(){ modal.classList.add('show'); modal.setAttribute('aria-hidden','false'); }
+    function closeReserve(){ modal.classList.remove('show'); modal.setAttribute('aria-hidden','true'); }
+    function submitReserve(){
+      const name = document.getElementById('name').value || 'Guest';
+      const phone = document.getElementById('phone').value || 'N/A';
+      const date = document.getElementById('date').value || 'TBD';
+      const time = document.getElementById('time').value || 'TBD';
+      const guests = document.getElementById('guests').value;
+      // For this static demo we just show a confirmation. Integrate with backend to capture.
+      alert(`Thanks ${name}! Your request for ${guests} on ${date} at ${time} has been received. We'll contact you at ${phone}.`);
+      closeReserve();
+    }
+
+    // Close modal on outside click
+    modal.addEventListener('click', (e)=>{ if(e.target===modal) closeReserve(); });
+  </script>
+</body>
+</html>
