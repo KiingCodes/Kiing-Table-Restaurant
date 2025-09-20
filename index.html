@@ -66,15 +66,71 @@
     .mini-row small{color:rgba(255,255,255,0.65)}
 
     /* Menu section */
-    .menu-section{max-width:1100px;margin:46px auto;padding:0 22px}
-    .menu-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
-    .menu-card{background:var(--glass);padding:20px;border-radius:12px;border:1px solid rgba(255,255,255,0.03)}
-    .section-title{font-family:'Playfair Display',serif;color:var(--gold);font-size:20px;margin-bottom:14px}
+.menu {
+  padding: 4rem 2rem;
+  background: #1C1C1C;
+  color: #fff;
+  text-align: center;
+}
 
-    .menu-item{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px dashed rgba(255,255,255,0.03)}
-    .menu-item:last-child{border-bottom:none}
-    .menu-item h4{margin:0;font-weight:600}
-    .menu-item p{margin:6px 0 0;color:rgba(255,255,255,0.65);font-size:13px}
+.menu h2 {
+  font-size: 2.5rem;
+  color: #f3c77a;
+  margin-bottom: 3rem;
+}
+
+.menu-section {
+  margin-bottom: 3rem;
+}
+
+.menu-section h3 {
+  font-size: 1.8rem;
+  color: #f3c77a;
+  margin-bottom: 1.5rem;
+}
+
+.menu-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+}
+
+.menu-card {
+  background: #2a2a2a;
+  border-radius: 12px;
+  padding: 1.5rem;
+  text-align: left;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.menu-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+}
+
+.menu-card img {
+  width: 50%;
+  height: 40px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 1rem;
+}
+
+.menu-card h4 {
+  font-size: 1.25rem;
+  color: #fff;
+}
+
+.menu-card p {
+  color: #ccc;
+  font-size: 0.95rem;
+  margin: 0.5rem 0 1rem;
+}
+
+.price {
+  font-weight: bold;
+  color: #f3c77a;
+}
 
     /* Gallery */
     .gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:42px auto;max-width:1100px;padding:0 22px}
